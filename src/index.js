@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Question from './Question';
 import './styles.css';
+let i = '1';
 
 class App extends Component {
   constructor() {
@@ -9,8 +10,7 @@ class App extends Component {
     
     this.state = {
       children: [
-        <Question
-          n="name"/>
+        <Question key='0'/>
       ]
     }
   }
@@ -19,10 +19,10 @@ class App extends Component {
     this.setState({
         children: [
           ...this.state.children, 
-          <Question
-          n="name"/>
+          <Question key={i}/>
         ]
     });
+    i += 1;
 }
   
   render() {

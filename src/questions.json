@@ -1,11 +1,13 @@
 [
     {
         "type": "text",
+        "name": "firstname",
         "question": "What is your first name?",
         "error": "Please enter your first name."
     },
     {
         "type": "text",
+        "name": "lastname",
         "question": "What is your last name?",
         "error": "Please enter your last name."
     }
