@@ -1,5 +1,11 @@
 [
     {
+        "type": "title",
+        "name": "title",
+        "question": "My Survey",
+        "buttonmsg": "BEGIN"
+    },
+    {
         "type": "text",
         "name": "firstname",
         "question": "What is your first name?",
@@ -12,13 +18,20 @@
         "error": "Please enter your last name."
     },
     {
+        "type": "email",
+        "name": "email",
+        "question": "What is your email?",
+        "error": "Please enter a valid email."
+    },
+    {
         "type": "select",
-        "name": "yesno",
-        "question": "Are you ready to begin?",
-        "error": "Please select an option.",
+        "name": "flavors",
+        "isMulti": "true",
+        "question": "Select ice cream flavors you like.",
+        "error": ".",
         "children": [
-            { "value": "Yes", "label": "Yes" },
-            { "value": "No", "label": "No" }
-        ]
+            { "value": "chocolate", "label": "Chocolate" },
+            { "value": "strawberry", "label": "Strawberry" },
+            { "value": "vanilla", "label": "Vanilla" }]
     }
 ]

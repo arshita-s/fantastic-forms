@@ -3,10 +3,10 @@ import ReactSelect from 'react-select';
 import { isVisible } from '@testing-library/user-event/dist/utils';
 import { useField } from '@unform/core';
 
-export default function Select({ name, options, ...rest }) {
+export default function Select({ name, options, isMulti,...rest }) {
 
   
-  const [selectedOpt, setSelectedOpt] = useState("Yes");
+  const [selectedOpt, setSelectedOpt] = useState([]);
   
   const selectRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
@@ -15,25 +15,17 @@ export default function Select({ name, options, ...rest }) {
   
   function handleChange(event) {
     setSelectedOpt(event);
-    console.log(event);
-    console.log(event['value']);
+    console.log(selectedOpt);
     registerField({
       name: fieldName,
       ref: selectRef.current,
       getValue: (ref) => {
-        return event['value']
+        let temp = [];
+        for (var i=0; i < event.length; i++) temp.push(event[i]);
+        return temp;
       }
     });
   }
-
-  /*useEffect(() => {
-    console.log(selectedOpt['value']);
-    registerField({
-      name: fieldName,
-      ref: selectRef.current,
-      path: "value"
-    });
-  }, [fieldName, selectedOpt, registerField, rest.isMulti]);*/
 
   const customStyles ={
     valueContainer: (provided) => ({
@@ -43,7 +35,7 @@ export default function Select({ name, options, ...rest }) {
     container: (provided) => ({
       ...provided,
       animation: "slide-top 1.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
-      marginBottom: "25px",
+      marginBottom: "40px",
       minWidth: "50vh",
       "z-index": "1"
     }),
@@ -52,6 +44,20 @@ export default function Select({ name, options, ...rest }) {
       borderRadius: "0px",
       borderColor: state.hover ? "#444" : "#ddd"
     })
+  }
+  if(isMulti === 'true') {
+    return (
+      <ReactSelect
+        defaultValue={defaultValue}
+        ref={selectRef}
+        classNamePrefix="react-select"
+        options={options}
+        isMulti
+        onChange={handleChange}
+        value={selectedOpt}
+        styles={customStyles}
+      />
+    );
   }
   return (
     <ReactSelect
@@ -65,7 +71,6 @@ export default function Select({ name, options, ...rest }) {
         return option === selectedOpt;
       })}
       styles={customStyles}
-      theme="neutral90"
     />
   );
 };

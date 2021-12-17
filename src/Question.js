@@ -12,6 +12,8 @@ export default function Question(...rest) {
     let q_type = null;
     let q_name = null;
     let options = null;
+    let buttonmsg = null;
+    let isMulti = null;
     
     if(d.length > 0) {
         question_str = d[0]['question'];
@@ -20,15 +22,23 @@ export default function Question(...rest) {
         
         if(q_type === 'select') {
             options = d[0]['children'];
+            isMulti = d[0]['isMulti'];
+            console.log(isMulti)
+        }
+
+        if(q_type === 'title') {
+            buttonmsg = d[0]['buttonmsg'];
         }
         
         d = d.slice(1);
     }
     
     function handleSubmit(data, { reset }) {
-        console.log(data, reset);
-        results.push(data);
-        transition(document.getElementById("form"));
+        const f = document.getElementById("form");
+        if(f.checkValidity()) {
+            results.push(data);
+            transition(f);
+        }
     }
 
     function transition(obj) {
@@ -43,14 +53,38 @@ export default function Question(...rest) {
             </>
         );
     }
+    if(q_type === 'title') {
+        return (
+            <>
+                <Form id="form" onSubmit={handleSubmit}>
+                    <label style={{"fontSize": "100px", "marginBottom": "50px"}}>{question_str}</label>
+                    <button className="material-bubble" type="submit">{buttonmsg}</button>
+                </Form>
+            </>
+        );
+    }
     if(q_type === 'text') {
         return (
             <>
               <Form id="form" onSubmit={handleSubmit}>
                   <Input 
                    name={q_name}
-                   label={question_str} />
-                  <button type="submit">OK</button>
+                   label={question_str} 
+                   type='text'/>
+                  <button className="material-bubble" type="submit">OK</button>
+              </Form>
+            </>
+          );
+    }
+    if(q_type === 'email') {
+        return (
+            <>
+              <Form id="form" onSubmit={handleSubmit}>
+                  <Input 
+                   name={q_name}
+                   label={question_str} 
+                   type='email'/>
+                  <button className="material-bubble" type="submit">OK</button>
               </Form>
             </>
           );
@@ -62,8 +96,9 @@ export default function Question(...rest) {
                   <label>{question_str}</label>
                     <Select 
                     name={q_name}
-                    options={options}/>
-                  <button type="submit">OK</button>
+                    options={options}
+                    isMulti={isMulti}/>
+                  <button className="material-bubble" type="submit">OK</button>
               </Form>
             </>
         );
@@ -71,7 +106,7 @@ export default function Question(...rest) {
     
     return (
       <>
-        <label>Bleh.</label>
+        <label>Oops! An error occured.<br></br>Please refresh and try again.</label>
       </>
     );
   }
