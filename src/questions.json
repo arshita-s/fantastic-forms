@@ -10,5 +10,15 @@
         "name": "lastname",
         "question": "What is your last name?",
         "error": "Please enter your last name."
+    },
+    {
+        "type": "select",
+        "name": "yesno",
+        "question": "Are you ready to begin?",
+        "error": "Please select an option.",
+        "children": [
+            { "value": "Yes", "label": "Yes" },
+            { "value": "No", "label": "No" }
+        ]
     }
 ]

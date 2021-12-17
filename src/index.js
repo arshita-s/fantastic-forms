@@ -34,7 +34,7 @@ class App extends Component {
                 document.getElementById("form").parentNode.removeChild(document.getElementById("form"));
                 this.appendChild();
               }
-          } className="box-container">
+          }>
               {this.state.children.map(child => child)}
           </div>
       </div>
