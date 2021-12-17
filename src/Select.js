@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactSelect from 'react-select';
 import { isVisible } from '@testing-library/user-event/dist/utils';
 import { useField } from '@unform/core';
+import makeAnimated from 'react-select/animated';
 
 export default function Select({ name, options, isMulti,...rest }) {
 
   
   const [selectedOpt, setSelectedOpt] = useState([]);
-  
+  const animatedComponents = makeAnimated();
   const selectRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
-  
+  const search = false;
   
   
   function handleChange(event) {
@@ -48,10 +49,12 @@ export default function Select({ name, options, isMulti,...rest }) {
   if(isMulti === 'true') {
     return (
       <ReactSelect
+        components={animatedComponents}
         defaultValue={defaultValue}
         ref={selectRef}
         classNamePrefix="react-select"
         options={options}
+        isSearchable='false'
         isMulti
         onChange={handleChange}
         value={selectedOpt}
@@ -65,6 +68,7 @@ export default function Select({ name, options, isMulti,...rest }) {
       ref={selectRef}
       classNamePrefix="react-select"
       options={options}
+      isSearchable='false'
       onChange={handleChange}
       value={
         options.filter(function(option) {

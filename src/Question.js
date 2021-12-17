@@ -23,7 +23,6 @@ export default function Question(...rest) {
         if(q_type === 'select') {
             options = d[0]['children'];
             isMulti = d[0]['isMulti'];
-            console.log(isMulti)
         }
 
         if(q_type === 'title') {
@@ -56,7 +55,7 @@ export default function Question(...rest) {
     if(q_type === 'title') {
         return (
             <>
-                <Form id="form" onSubmit={handleSubmit}>
+                <Form autoComplete="off" id="form" onSubmit={handleSubmit}>
                     <label style={{"fontSize": "100px", "marginBottom": "50px"}}>{question_str}</label>
                     <button className="material-bubble" type="submit">{buttonmsg}</button>
                 </Form>
@@ -66,7 +65,7 @@ export default function Question(...rest) {
     if(q_type === 'text') {
         return (
             <>
-              <Form id="form" onSubmit={handleSubmit}>
+              <Form autoComplete="off" id="form" onSubmit={handleSubmit}>
                   <Input 
                    name={q_name}
                    label={question_str} 
@@ -79,7 +78,7 @@ export default function Question(...rest) {
     if(q_type === 'email') {
         return (
             <>
-              <Form id="form" onSubmit={handleSubmit}>
+              <Form autoComplete="off" id="form" onSubmit={handleSubmit}>
                   <Input 
                    name={q_name}
                    label={question_str} 
@@ -92,7 +91,7 @@ export default function Question(...rest) {
     if(q_type === 'select') {
         return (
             <>
-              <Form id="form" onSubmit={handleSubmit}>
+              <Form autoComplete="off" id="form" onSubmit={handleSubmit}>
                   <label>{question_str}</label>
                     <Select 
                     name={q_name}
