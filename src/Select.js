@@ -10,8 +10,7 @@ export default function Select({ name, options, isMulti,...rest }) {
   const [selectedOpt, setSelectedOpt] = useState([]);
   const animatedComponents = makeAnimated();
   const selectRef = useRef(null);
-  const { fieldName, defaultValue, registerField, error } = useField(name);
-  const search = false;
+  const { fieldName, defaultValue, registerField} = useField(name);
   
   
   function handleChange(event) {
@@ -54,7 +53,7 @@ export default function Select({ name, options, isMulti,...rest }) {
         ref={selectRef}
         classNamePrefix="react-select"
         options={options}
-        isSearchable='false'
+        isSearchable={false}
         isMulti
         onChange={handleChange}
         value={selectedOpt}

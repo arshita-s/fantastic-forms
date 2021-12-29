@@ -1,0 +1,31 @@
+[
+    {
+        "component": "question", 
+        "styles": {
+            "font-size": "24px",
+            "font-weight": "bold",
+            "margin-bottom": "25px",
+            "color": "black"
+        }
+    },
+    {
+        "component": "title",
+        "styles": {
+            "font-size": "100px",
+            "font-weight": "bold",
+            "margin-bottom": "50px",
+            "color": "black"
+        }
+    },
+    {
+        "component": "input-text",
+        "styles": {
+            "font-size": "15px",
+            "font-weight": "normal",
+            "margin-bottom": "40px",
+            "color": "black",
+            "border-color-selected": "black",
+            "border": "1px solid #ddd"
+        }
+    }
+]

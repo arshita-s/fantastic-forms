@@ -15,6 +15,7 @@ export default function Question(...rest) {
     let buttonmsg = null;
     let isMulti = null;
     
+    
     if(d.length > 0) {
         question_str = d[0]['question'];
         q_type = d[0]['type'];
@@ -31,7 +32,7 @@ export default function Question(...rest) {
         
         d = d.slice(1);
     }
-    
+
     function handleSubmit(data, { reset }) {
         const f = document.getElementById("form");
         if(f.checkValidity()) {
@@ -56,11 +57,12 @@ export default function Question(...rest) {
         return (
             <>
                 <Form autoComplete="off" id="form" onSubmit={handleSubmit}>
-                    <label style={{"fontSize": "100px", "marginBottom": "50px"}}>{question_str}</label>
+                    <span>{question_str}</span>
                     <button className="material-bubble" type="submit">{buttonmsg}</button>
                 </Form>
             </>
         );
+
     }
     if(q_type === 'text') {
         return (
